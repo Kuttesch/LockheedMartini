@@ -14,24 +14,17 @@ public class Leopard3 extends Robot
 	 */
 	public void run() {
 
-		setColors(Color.red,Color.blue,Color.green); // body,gun,radar
+
 
 		// Robot main loop
 		while(true) {
-			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(360);
-			back(100);
-			turnGunRight(360);
-		}
-	}
-
-	public void radar() {
-		while(true) {
 			turnRadarRight(360);
+			int red = (int)(Math.random() * 255);
+			int green = (int)(Math.random() * 255);
+			int blue = (int)(Math.random() * 255);
+			setColors(new Color(red, green, blue), new Color(red, green, blue), new Color(red, green, blue)); // body,gun,radar
 		}
 	}
-
 	/**
 	 * onScannedRobot: What to do when you see another robot
 	 */
@@ -40,7 +33,6 @@ public class Leopard3 extends Robot
 		double distance = e.getDistance();
 		double energy = e.getEnergy();
 		double bearing = e.getBearing();
-		double heading = e.getHeading();
 		double velocity = e.getVelocity();
 		double time = distance / (20 - (3 * energy));
 		double gunTurn = getHeading() - getGunHeading() + bearing;
