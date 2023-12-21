@@ -78,4 +78,16 @@ public class Leopard3 extends Robot
 		back(20);
 		turnRight(90);
 	}
+
+
+	public void onHitRobot(HitRobotEvent e) {
+		double bearing = e.getBearing();
+		double gunTurn = getHeading() - getGunHeading() + bearing;
+		double radarTurn = getHeading() - getRadarHeading() + bearing;
+		turnGunRight(gunTurn);
+		turnRadarRight(radarTurn);
+		fire(3);
+		ahead(10);
+		scan();
+	}
 }
