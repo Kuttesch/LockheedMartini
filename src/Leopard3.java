@@ -84,5 +84,6 @@ public class Leopard3 extends Robot
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
 		back(50);
+		turnRight(90);
 	}	
 }
