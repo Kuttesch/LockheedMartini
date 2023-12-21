@@ -1,6 +1,6 @@
 package LockheedMartini;
 import robocode.*;
-//import java.awt.Color;
+import java.awt.Color;
 
 // API help : https://robocode.sourceforge.io/docs/robocode/robocode/Robot.html
 
@@ -13,12 +13,8 @@ public class Leopard3 extends Robot
 	 * run: Leopard3's default behavior
 	 */
 	public void run() {
-		// Initialization of the robot should be put here
 
-		// After trying out your robot, try uncommenting the import at the top,
-		// and the next line:
-
-		// setColors(Color.red,Color.blue,Color.green); // body,gun,radar
+		setColors(Color.red,Color.blue,Color.green); // body,gun,radar
 
 		// Robot main loop
 		while(true) {
@@ -30,12 +26,32 @@ public class Leopard3 extends Robot
 		}
 	}
 
+	public void radar() {
+		while(true) {
+			turnRadarRight(360);
+		}
+	}
+
 	/**
 	 * onScannedRobot: What to do when you see another robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
+
+		double distance = e.getDistance();
+		double energy = e.getEnergy();
+		double bearing = e.getBearing();
+		double heading = e.getHeading();
+		double velocity = e.getVelocity();
+		double time = distance / (20 - (3 * energy));
+		double gunTurn = getHeading() - getGunHeading() + bearing;
+		double radarTurn = getHeading() - getRadarHeading() + bearing;
+
 		// Replace the next line with any behavior you would like
-		fire(1);
+		turnGunRight(gunTurn);
+		turnRadarRight(radarTurn);
+		fire(3);
+		ahead(velocity * time);
+		scan();
 	}
 
 	/**
