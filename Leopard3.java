@@ -1,5 +1,6 @@
 package LockheedMartini;
 import robocode.*;
+import java.util.*;
 import java.awt.Color;
 
 // API help : https://robocode.sourceforge.io/docs/robocode/robocode/Robot.html
@@ -14,20 +15,35 @@ public class Leopard3 extends Robot
 	 */
 	public void run() {
 
+		setAdjustGunForRobotTurn(true);
+		setAdjustRadarForGunTurn(true);
+		setAdjustRadarForRobotTurn(true);
 
 
 		// Robot main loop
 		while(true) {
 			turnRadarRight(360);
+			this.turnGunRight(360.0D);
 			int red = (int)(Math.random() * 255);
 			int green = (int)(Math.random() * 255);
 			int blue = (int)(Math.random() * 255);
 			setColors(new Color(red, green, blue), new Color(red, green, blue), new Color(red, green, blue)); // body,gun,radar
+			// Replace the next 4 lines with any behavior you would like
+			movement();
 		}
 	}
-	/**
-	 * onScannedRobot: What to do when you see another robot
-	 */
+	public void movement(){
+		Random random = new Random();
+		int max_turn = 180;
+		int min_turn = 0;
+		int randomDegree = random.nextInt(max_turn - min_turn + 1);
+		int randomDirection = random.nextInt(2);
+		if (randomDirection == 0){
+			turnRight(randomDegree);
+		}
+		else turnLeft(randomDegree);
+		ahead(100);
+	}
 	public void onScannedRobot(ScannedRobotEvent e) {
 
 		double distance = e.getDistance();
@@ -50,7 +66,6 @@ public class Leopard3 extends Robot
 	 * onHitByBullet: What to do when you're hit by a bullet
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
-		// Replace the next line with any behavior you would like
 		back(10);
 	}
 	
@@ -60,5 +75,6 @@ public class Leopard3 extends Robot
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
 		back(20);
+		turnRight(90);
 	}	
 }
