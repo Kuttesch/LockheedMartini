@@ -5,9 +5,11 @@ import java.awt.Color;
 
 // API help : https://robocode.sourceforge.io/docs/robocode/robocode/Robot.html
 
+
 /**
  * Leopard3 - a robot by (your name here)
  */
+
 public class Leopard3 extends Robot
 {
 	/**
@@ -27,8 +29,7 @@ public class Leopard3 extends Robot
 			int red = (int)(Math.random() * 255);
 			int green = (int)(Math.random() * 255);
 			int blue = (int)(Math.random() * 255);
-			setColors(new Color(red, green, blue), new Color(red, green, blue), new Color(red, green, blue)); // body,gun,radar
-			// Replace the next 4 lines with any behavior you would like
+			setColors(new Color(red, green, blue), new Color(red, green, blue), new Color(red, green, blue));
 			movement();
 		}
 	}
@@ -68,7 +69,7 @@ public class Leopard3 extends Robot
 	public void onHitByBullet(HitByBulletEvent e) {
 		back(10);
 	}
-	
+
 	/**
 	 * onHitWall: What to do when you hit a wall
 	 */
@@ -76,5 +77,5 @@ public class Leopard3 extends Robot
 		// Replace the next line with any behavior you would like
 		back(20);
 		turnRight(90);
-	}	
+	}
 }
