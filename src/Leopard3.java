@@ -35,15 +35,15 @@ public class Leopard3 extends Robot
 	}
 	public void movement(){
 		Random random = new Random();
-		int max_turn = 180;
+		int max_turn = 135;
 		int min_turn = 0;
-		int randomDegree = random.nextInt(max_turn - min_turn + 1);
+        int randomDegree = random.nextInt(max_turn - min_turn + 1);
 		int randomDirection = random.nextInt(2);
 		if (randomDirection == 0){
 			turnRight(randomDegree);
 		}
 		else turnLeft(randomDegree);
-		ahead(100);
+		ahead(50);
 	}
 	public void onScannedRobot(ScannedRobotEvent e) {
 
@@ -67,7 +67,8 @@ public class Leopard3 extends Robot
 	 * onHitByBullet: What to do when you're hit by a bullet
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
-		back(10);
+		// Replace the next line with any behavior you would like
+		back(50);
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class Leopard3 extends Robot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
-		back(20);
+		back(50);
 		turnRight(90);
 	}
 
