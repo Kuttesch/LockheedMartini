@@ -1,5 +1,6 @@
 import robocode.*;
 
+
 public class Leopard4 extends AdvancedRobot {
     public void run() {
         setAdjustRadarForRobotTurn(true);
